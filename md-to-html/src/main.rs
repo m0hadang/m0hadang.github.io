@@ -1,3 +1,4 @@
+use markdown::ParseOptions;
 
 fn create_html_file(markdown_file: &str, html_file: &str) -> Result<(), markdown::message::Message> {
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
@@ -5,7 +6,23 @@ fn create_html_file(markdown_file: &str, html_file: &str) -> Result<(), markdown
         &markdown,
         &markdown::Options::gfm()
     )?;
-    std::fs::write(html_file, html).unwrap();
+
+    let mut html_data = String::new();
+    html_data.push_str("<HTML>");
+    html_data.push_str( r#"<HEAD>
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="css\style.css">
+    <title>Document</title>
+</HEAD>"#);
+
+    html_data.push_str("\n");
+    html_data.push_str("<BODY>\n");
+    html_data.push_str(&html);
+    html_data.push_str("\n");
+    html_data.push_str("</BODY>\n");
+
+    html_data.push_str("</HTML>\n");
+    std::fs::write(html_file, html_data).unwrap();
     Ok(())
 }
 
