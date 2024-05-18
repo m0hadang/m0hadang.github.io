@@ -1,3 +1,5 @@
+use std::env::set_current_dir;
+
 fn create_html_file(
     markdown_file: &str,
     file_path: &str,
@@ -11,12 +13,22 @@ fn create_html_file(
         &markdown::Options::gfm()
     )?;
 
+    let css_path = {
+        let file_path_depth_count = file_path.split('\\').count();
+        let mut css_path = String::new();
+        for _ in 0..file_path_depth_count - 1 {
+            css_path.push_str(r#"..\"#);
+        }
+        css_path.push_str(r#"css\style.css"#);
+        css_path
+    };
+
     let html = format!(
 r#"<!DOCTYPE html>
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="css\style.css">
+  <link rel="stylesheet" href="{css_path}">
   <title>Document</title>
 </HEAD>
 
@@ -47,8 +59,9 @@ fn get_md_files(dir: &str) -> Vec<String> {
 }
 
 fn main() {
-    create_html_file(r"..\index.md", r"..\index.html").unwrap();
-    get_md_files(r"..\post").iter().for_each(|file| {
+    set_current_dir(r"..\").unwrap();
+    create_html_file(r"index.md", r"index.html").unwrap();
+    get_md_files(r"post").iter().for_each(|file| {
         create_html_file(file, &file.replace(".md", ".html")).unwrap();
     });
 }
