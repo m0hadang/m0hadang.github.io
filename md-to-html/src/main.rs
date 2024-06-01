@@ -1,5 +1,7 @@
 use std::env::set_current_dir;
 
+use markdown::{CompileOptions, Options};
+
 fn create_html_file(
     markdown_file: &str,
     file_path: &str,
@@ -10,7 +12,14 @@ fn create_html_file(
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
     let body = markdown::to_html_with_options(
         &markdown,
-        &markdown::Options::gfm()
+        &Options {
+            compile: CompileOptions {
+                allow_dangerous_html: true,
+                allow_dangerous_protocol: true,
+                ..CompileOptions::default()
+            },
+            ..Options::default()
+        }
     )?;
 
     let css_path = {
