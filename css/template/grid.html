@@ -27,21 +27,17 @@
     #grid{
       display: grid;
       grid-template-columns: 150px 1fr;      /*1번째 컬럼은 150px, 2번째 컬럼은 1**/
-
     }
     #grid ol{                                /*조상이 grid인 ol 태그를 선택.*/
-
-    padding-left:33px;
+      padding-left:33px;
     }
-    #grid #article{                          /*조상이 grid인 article 태그를 선택.
-    */
-    padding-left:25px;
+    #grid #article{                          /*조상이 grid인 article 태그를 선택.*/
+      padding-left:25px;
     }
     @media(max-width:800px){                 /*화면 크기가 800px 미만일 때 격자선 숨김.*/
-
-    #grid{
-      display: block;
-    }
+      #grid{
+        display: block;
+      }
       ol{
         border-right:none;
       }

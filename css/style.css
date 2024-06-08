@@ -2,14 +2,21 @@
 }
 
 body{
-    margin: 40px;
+    margin: 20px 40px 40px 40px;
 }
 
 h1 {
     margin: 48px 0px 0px 0px;
 }
 
+#post-title {
+    font-size:50px;
+    margin: 0px;
+    border-bottom: 1px solid gray;
+    padding: 0px 0px 16px 0px;
+}
+
+
 p {
     text-align: left;
 }
-

@@ -55,6 +55,7 @@ fn create_html_file(
 </HEAD>
 
 <BODY>
+<h1 id="post-title">{title}</h1>
 
 {body}
 
