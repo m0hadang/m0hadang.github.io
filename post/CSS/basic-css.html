@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
+  <title>Document</title>
+</HEAD>
+
+<BODY>
+
+<h1>2가지 기본 사용법</h1>
+<ol>
+<li>태그 선언</li>
+</ol>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;style&gt;
+    h2{color:blue}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Hello world&lt;/h2&gt;
+&lt;/body&gt;
+</code></pre>
+<ol start="2">
+<li>속성 선언</li>
+</ol>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;h1 style=&quot;color:red&quot;&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+</code></pre>
+<h1>선택자(selector)</h1>
+<p>선택자는 CSS에서 스타일을 적용할 HTML 요소를 선택하는 방법이다.</p>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;style&gt;
+    li {                   &lt;-- 선택자
+      color:red;
+      text-decoration:underline;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<h1>태그 선택자</h1>
+<p>태그를 선택하여 스타일을 적용.</p>
+<pre><code class="language-html">&lt;style&gt;
+  li{color:red;}     &lt;--  li 태그 선택.
+&lt;/style&gt;
+</code></pre>
+<h1>아이디 선택자</h1>
+<p>아이디 선택자는 ID 속성을 사용하여 특정 태그에만 스타일을 적용.</p>
+<pre><code class="language-html">&lt;head&gt;
+&lt;style&gt;
+  li{color:red;}
+  #select{            &lt;-- # 으로 시작. ID가 select인 태그에 효과 적용.
+    font-size:50px;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li id=&quot;select&quot;&gt;CSS&lt;/li&gt;   &lt;-- ID를 select로 지정 하였다.
+    &lt;li&gt;JavaScript&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<p>주의 사항</p>
+<ul>
+<li>다음과 같이 여러 태그를 선택하여도 정상 동작 하지만 지양해야 한다.</li>
+<li>ID는 고유성이라는 성질을 가지며 ID 선택자의 원래 목적은 하나만 지정 하는 것이다.</li>
+<li>여러 태그를 선택하려면 클래스 선택자를 사용 해야 한다.</li>
+</ul>
+<pre><code class="language-html">&lt;li id=&quot;deactive&quot;&gt;HTML&lt;/li&gt;
+&lt;li id=&quot;deactive&quot;&gt;JavaScript&lt;/li&gt;
+</code></pre>
+<h1>클래스 선택자</h1>
+<p>class 속성을 사용하여 특정 태그들에 스타일을 적용.</p>
+<pre><code class="language-html">&lt;head&gt;
+&lt;style&gt;
+  .deactive{             &lt;-- . 으로 시작. 클래스가 deactive인 태그에 효과 적용.
+    text-decoration: line-through;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+    &lt;li class=&quot;deactive&quot;&gt;HTML&lt;/li&gt;
+    &lt;li class=&quot;deactive&quot;&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<p>클래스 선택자는 태그 선택자와 조합하여 사용 가능 하다.</p>
+<ul>
+<li><code>li.deactive</code></li>
+</ul>
+<h1>링크 관련 선택자</h1>
+<ul>
+<li><code>:link</code> : 방문한 적이 없는 링크</li>
+<li><code>:visited1</code> : 방문한 적이 있는 링크</li>
+<li><code>:hover</code> : 마우스를 롤오버 했을 때</li>
+<li><code>:active</code> : 마우스를 클릭했을 때</li>
+</ul>
+<pre><code class="language-html">&lt;head&gt;
+  &lt;style&gt;
+    a.hover{
+      color:yellow;
+    }
+    a.active{
+      coror:green;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul&gt;
+    &lt;a href=&quot;&quot;&gt;&lt;/a&gt;
+    &lt;a href=&quot;&quot;&gt;&lt;/a&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<h1>선택자 조합</h1>
+<p>부모와 자손 관계</p>
+<pre><code class="language-html">ul li{
+    color:red;
+}
+</code></pre>
+<ul>
+<li>웹페이지에 있는 모든 ul 밑에 있는 li 태그에 적용</li>
+<li>하위 태그를 지정하는 법은 띄어쓰기이다.</li>
+</ul>
+<p>부모와 자식 관계</p>
+<pre><code class="language-html">#lecture&gt;li{
+    border:1px solid red;
+}
+</code></pre>
+<ul>
+<li><code>#lecture</code> 바로 밑에 있는 li 에만 적용 한다.</li>
+<li>주의! 모든 속성이 위와 같이 적용 되는것은 아니다. color 라는 속성은 하위 요소들 모두에 영향을 주기에 의미가 없다.</li>
+</ul>
+<p>형제 관계</p>
+<pre><code class="language-html">ul,ol{
+    background-color: powderblue;
+}
+</code></pre>
+<ul>
+<li>
+<p>ul 와 ol 태그를 둘다 선택 한다.</p>
+</li>
+</ul>
+<pre><code class="language-html">&lt;head&gt;
+    &lt;style&gt;
+        ul li{
+            color:red;
+        }
+        #lecture&gt;li{
+            border:1px solid green;
+            color:green;
+        }
+        ul,ol{
+            background-color: powderblue;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;                            //ul,ol 적용 O
+    &lt;li&gt;HTML&lt;/li&gt;               //ul li 적용 O
+    &lt;li&gt;CSS                     //ul li 적용 O
+        &lt;ol&gt;
+            &lt;li&gt;selector&lt;/li&gt;       //ul li 적용 O
+            &lt;li&gt;declaration&lt;/li&gt;    //ul li 적용 O
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;         //ul li 적용
+&lt;/ul&gt;
+&lt;ol id=&quot;lecture&quot;&gt;               //ul,ol 적용 O
+    &lt;li&gt;HTML&lt;/li&gt;               //#lecture&gt;li 적용 O
+    &lt;li&gt;CSS                     //#lecture&gt;li 적용 O
+        &lt;ol&gt;
+            &lt;li&gt;selector&lt;/li&gt;       //#lecture&gt;li 적용 X
+            &lt;li&gt;declaration&lt;/li&gt;    //#lecture&gt;li 적용 X
+        &lt;/ol&gt;
+    &lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;         //#lecture&gt;li 적용 O
+&lt;/ol&gt;
+&lt;/body&gt;
+</code></pre>
+<ul>
+<li><img src="img.png" alt="img.png" /></li>
+</ul>
+
+
+</BODY>
+
+</HTML>
