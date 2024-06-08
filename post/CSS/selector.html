@@ -8,31 +8,11 @@
 
 <BODY>
 
-<h1>2가지 기본 사용법</h1>
-<ol>
-<li>태그 선언</li>
-</ol>
-<pre><code class="language-html">&lt;head&gt;
-  &lt;style&gt;
-    h2{color:blue}
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h2&gt;Hello world&lt;/h2&gt;
-&lt;/body&gt;
-</code></pre>
-<ol start="2">
-<li>속성 선언</li>
-</ol>
-<pre><code class="language-html">&lt;body&gt;
-  &lt;h1 style=&quot;color:red&quot;&gt;Hello World&lt;/h1&gt;
-&lt;/body&gt;
-</code></pre>
 <h1>선택자(selector)</h1>
 <p>선택자는 CSS에서 스타일을 적용할 HTML 요소를 선택하는 방법이다.</p>
 <pre><code class="language-html">&lt;head&gt;
   &lt;style&gt;
-    li {                   &lt;-- 선택자
+    li {                   &lt;-- 누구에게 효과를 줄지 선택하는 선택자(selector)
       color:red;
       text-decoration:underline;
     }
@@ -101,10 +81,11 @@
 </ul>
 <h1>링크 관련 선택자</h1>
 <ul>
-<li><code>:link</code> : 방문한 적이 없는 링크</li>
-<li><code>:visited1</code> : 방문한 적이 있는 링크</li>
-<li><code>:hover</code> : 마우스를 롤오버 했을 때</li>
-<li><code>:active</code> : 마우스를 클릭했을 때</li>
+<li><code>:link</code> : 방문한 적이 없는 링크 태그</li>
+<li><code>:visited1</code> : 방문한 적이 있는 링크 태그</li>
+<li><code>:hover</code> : 마우스 롤오버된 태그</li>
+<li><code>:active</code> : 마우스 클릭된 태그</li>
+<li>hover 와 active 가 같이 선언 되었을 경우 맨 마지막 선언이 적용</li>
 </ul>
 <pre><code class="language-html">&lt;head&gt;
   &lt;style&gt;
@@ -190,9 +171,26 @@
 &lt;/body&gt;
 </code></pre>
 <ul>
-<li><img src="img.png" alt="img.png" /></li>
+<li><img src="selector-img-1.png" alt="img.png" /></li>
 </ul>
+<h1>선택자 적용 우선 순위</h1>
+<p>적용 범위가 작은 순서로 우선 적용된다.</p>
+<p><strong>ID 선택자 &gt; 클래스 선택자 &gt; 태그 선택자</strong></p>
+<h1>CSS 특징과 선택자 사용시 주의 사항</h1>
+<p>클래스 선택자는 띄어쓰기로 구분하여 여러 클래스를 지정할 수 있다. 그러나 좋은 방법은 아니다.</p>
+<pre><code class="language-html">.saw { 
+  color:gray; 
+}
+.active { 
+  color:red;   
+}                &lt;-- saw, active 가 동시에 선언 되었다.
 
+&lt;li&gt;&lt;a href=&quot;2.html&quot; class=&quot;saw active&quot;&gt;CSS&lt;/a&gt;&lt;/li&gt;
+
+색깔이 중복해서 겹쳐진다. 무슨 색이 될까???... active(red)가 덮어쓴다.
+</code></pre>
+<p>CSS 언어는 다른 순차적인 언어와 달리 선억적인 언어다. 즉, 순서를 배열하여 의도를 표현하지 않고 선언을 통해 의도를 표현한다.</p>
+<p>따라서 CSS 를 사용하면서 순서에 의존하는 코드 작성을 지양해야 한다.</p>
 
 </BODY>
 

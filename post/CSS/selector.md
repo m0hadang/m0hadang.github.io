@@ -1,24 +1,3 @@
-# 2가지 기본 사용법
-
-1. 태그 선언
-```html
-<head>
-  <style>
-    h2{color:blue}
-  </style>
-</head>
-<body>
-  <h2>Hello world</h2>
-</body>
-```
-
-2. 속성 선언
-```html
-<body>
-  <h1 style="color:red">Hello World</h1>
-</body>
-```
-
 # 선택자(selector)
 
 선택자는 CSS에서 스타일을 적용할 HTML 요소를 선택하는 방법이다.
@@ -26,7 +5,7 @@
 ```html
 <head>
   <style>
-    li {                   <-- 선택자
+    li {                   <-- 누구에게 효과를 줄지 선택하는 선택자(selector)
       color:red;
       text-decoration:underline;
     }
@@ -82,8 +61,6 @@
 <li id="deactive">HTML</li>
 <li id="deactive">JavaScript</li>
 ```
-       
-
 
 # 클래스 선택자
 
@@ -201,4 +178,31 @@ ul,ol{
 </ol>
 </body>
 ```
-- ![img.png](img.png)
+- ![img.png](selector-img-1.png)
+
+# 선택자 적용 우선 순위
+
+적용 범위가 작은 순서로 우선 적용된다.
+
+**ID 선택자 > 클래스 선택자 > 태그 선택자** 
+
+# CSS 특징과 선택자 사용시 주의 사항
+
+클래스 선택자는 띄어쓰기로 구분하여 여러 클래스를 지정할 수 있다. 그러나 좋은 방법은 아니다.
+
+```html
+.saw { 
+  color:gray; 
+}
+.active { 
+  color:red;   
+}                <-- saw, active 가 동시에 선언 되었다.
+
+<li><a href="2.html" class="saw active">CSS</a></li>
+
+색깔이 중복해서 겹쳐진다. 무슨 색이 될까???... active(red)가 덮어쓴다.
+```
+
+CSS 언어는 다른 순차적인 언어와 달리 선억적인 언어다. 즉, 순서를 배열하여 의도를 표현하지 않고 선언을 통해 의도를 표현한다. 
+
+따라서 CSS 를 사용하면서 순서에 의존하는 코드 작성을 지양해야 한다.
