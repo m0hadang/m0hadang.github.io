@@ -41,7 +41,7 @@ ex) padding, margin  변경
 
 이 유형은 display 속성으로 변경할 수 있다
 
-```html
+```css
 block level elemnt를 inline level 변경
 
 h1{

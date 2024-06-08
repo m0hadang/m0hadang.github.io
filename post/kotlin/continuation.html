@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>continuation</title>
+</HEAD>
+
+<BODY>
+
+<h1>Main-Safe</h1>
+<p>중요한 역할을 맡고 있는 메인스레드를 블락하지 않는다는 것이다.
+막힘 없는 앱 환경을 제공하기 위해서는 Main-Safe하게 개발해야하고, 이를 위해 여러 스레드를 활용하여 동시성 코드를 짜야한다.</p>
+<h1>콜백 방식</h1>
+<pre><code class="language-kotlin">// 순차적인 네트워크 호출을 나타내는 코드 
+
+fun getGingerBrave(api: CookieService): gingerBrave {
+    api.makeDough{ dough -&gt; 
+        api.addMagicPowder(dough){ -&gt; magicDough
+            api.escapeOven(magicDough) { -&gt; cookie
+                api.fetchGingerBrave(cookie) { -&gt; gingerBrave
+                    Log.d(&quot;You can't catch me! I'm the Gingerbre.. I'm Ginger Brave!&quot;)
+                    return gingerBrave
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h1>코루틴 방식</h1>
+<pre><code class="language-kotlin">suspend fun getGingerBrave(api: CookieService): gingerBrave {
+    val dough = api.makeDough()
+    val magicDough = api.addMagicPowder(dough)
+    val cookie = api.escapeOven(magicDough)
+    val gingerBrave = api.fetchGingerBrave(cookie)
+    Log.d(&quot;You can't catch me! I'm the Gingerbre.. I'm Ginger Brave!&quot;)
+    return gingerBrave
+}
+</code></pre>
+<p>코루틴은 콜백 기반 코드를 sequential code로 바꾸어주기 때문에 비동기 코드를 단순화할 수 있습니다.</p>
+<p>코틀린의 suspend 키워드는 내부적으로 콜백을 생성한다.
+즉, suspend 키워드를 만난 Kotlin 컴파일러는 suspend-resume을 위한 최적화된 콜백 코드를 생성.</p>
+<h1>CPS 패러다임</h1>
+<p>코루틴에는 CPS(Continuation Passing Style) 패러다임이 적용되어 있다.</p>
+<p>CPS란 호출되는 함수에 Continuation을 전달하고, 각 함수의 작업이 완료되는 대로 전달받은 코루틴을 호출하는 패러다임을 의미.</p>
+<p>Continuation는 콜백과도 비슷하다.</p>
+<pre><code class="language-kotlin">/**
+ * Interface representing a continuation after a suspension point that returns a value of type `T`.
+ */
+@SinceKotlin(&quot;1.3&quot;)
+public interface Continuation&lt;in T&gt; {
+    /**
+     * The context of the coroutine that corresponds to this continuation.
+     */
+    public val context: CoroutineContext
+
+    /**
+     * Resumes the execution of the corresponding coroutine passing a successful or failed [result] as the
+     * return value of the last suspension point.
+     */
+    public fun resumeWith(result: Result&lt;T&gt;)
+}
+</code></pre>
+<p>Continuation는 다음에 무슨 일을 해야 할지 담고 있는 확장된 콜백이다.</p>
+<p>resumeWith : 특정 함수 A가 suspend 되어야 할 때, 현재 함수에서 a의 결과 값을 T로 받게 해주는 함수.</p>
+<p>context : Continuation이 특정 스레드 혹은 스레드 풀에서 실행되는 것을 허용.</p>
+<p>Continuation은 호출 함수간의 suspend-resume을 위한 communicator이고, CPS는 함수 호출 시에 이 Continuation을 전달하는 패러다임. Kotlin Coroutine 역시 CPS로 구현되어 있다.</p>
+<h1>Link</h1>
+<p>https://tech.devsisters.com/posts/crunchy-concurrency-kotlin/</p>
+
+</BODY>
+
+</HTML>

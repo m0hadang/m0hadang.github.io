@@ -3,7 +3,13 @@
 <HEAD>
 <meta charset="UTF-8">
   <link rel="stylesheet" href="..\..\css\style.css">
-  <title>Document</title>
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>css-cache</title>
 </HEAD>
 
 <BODY>
@@ -14,7 +20,7 @@
 <p>css 를 정의한 파일. html 파일은 link 태그를 사용하여 css 파일을 다운받고 스타일을 적용할 수 있다.</p>
 <p>.css 파일을 사용하면 스타일을 여러 html 파일이 공유할 수 있다.</p>
 <p>ex) style.css</p>
-<pre><code class="language-html">body{
+<pre><code class="language-css">body{
     margin:0;
 }
 a {
@@ -22,7 +28,8 @@ a {
 }
 h1 {
     font-size:45px;
-...
+
+    ...
 </code></pre>
 <p>ex) index.html</p>
 <pre><code class="language-html">&lt;!doctype html&gt;

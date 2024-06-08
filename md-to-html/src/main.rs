@@ -4,10 +4,11 @@ use markdown::{CompileOptions, Options};
 
 fn create_html_file(
     markdown_file: &str,
-    file_path: &str,
 ) -> Result<(), markdown::message::Message> {
 
-    println!("{} -> {}", markdown_file, file_path);
+    let html_file = &markdown_file.replace(".md", ".html");
+
+    println!("{} -> {}", markdown_file, html_file);
 
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
     let body = markdown::to_html_with_options(
@@ -22,8 +23,14 @@ fn create_html_file(
         }
     )?;
 
+    let title = &markdown_file
+        .split('\\')
+        .last()
+        .unwrap()
+        .replace(".md", "");
+
     let css_path = {
-        let file_path_depth_count = file_path.split('\\').count();
+        let file_path_depth_count = html_file.split('\\').count();
         let mut css_path = String::new();
         for _ in 0..file_path_depth_count - 1 {
             css_path.push_str(r#"..\"#);
@@ -33,12 +40,18 @@ fn create_html_file(
     };
 
     let html = format!(
-r#"<!DOCTYPE html>
+        r#"<!DOCTYPE html>
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
   <link rel="stylesheet" href="{css_path}">
-  <title>Document</title>
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>{title}</title>
 </HEAD>
 
 <BODY>
@@ -49,7 +62,7 @@ r#"<!DOCTYPE html>
 
 </HTML>"#);
 
-    std::fs::write(file_path, html).unwrap();
+    std::fs::write(html_file, html).unwrap();
     Ok(())
 }
 
@@ -69,8 +82,8 @@ fn get_md_files(dir: &str) -> Vec<String> {
 
 fn main() {
     set_current_dir(r"..\").unwrap();
-    create_html_file(r"index.md", r"index.html").unwrap();
+    create_html_file(r"index.md").unwrap();
     get_md_files(r"post").iter().for_each(|file| {
-        create_html_file(file, &file.replace(".md", ".html")).unwrap();
+        create_html_file(file).unwrap();
     });
 }
