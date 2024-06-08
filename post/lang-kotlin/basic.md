@@ -11,8 +11,6 @@
 # nullable
 - ? 이용하여 nullable 변수 선언 가능.
 
-
-
 # 프리미티브 타입
 
 ```kotlin
@@ -35,6 +33,36 @@ fun main() {
 - UTF-16BE.
 - 문자 하나 표현시 2byte 사용. 
 
+# 파라미터
+
+코틀린도 다른 언어들 처럼 기본 인자, named 인자, 가변 인자 지원 
+
+```kotlin
+pay(amount = 200)
+```
+
+```kotlin
+fun printlnAll(vararg numbers: Int) {
+    for (n in numbers) {
+        println(n)
+    }
+}
+
+fun main() {
+    printlnAll(1, 2, 3, 4, 5)
+}
+```
+
+# 함수 기본 반환 타입(Unit)
+
+함수 반환 타입이 지정되지 않을 경우 Unit 를 반환한다. 
+
+```kotlin
+fun a(str: String) { 
+  println("function $str")  
+  //return 0    <-- 없는 것 같지만 기본적으로 0 반환
+}
+```
 
 # 단일 표현식
 
@@ -247,3 +275,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 - public(기본) : 클래스 외부에서 접근 가능.
 - private : 클래스 내부에서만 접근 가능.
 - protected : 클래스 자신과 상속받은 클래스에서 접근 가능.
+
+# 변수 사용시 주의
+
+val 는 할당된 객체를 바꿀 수 없을 뿐이지 객체 내부 속성을 바꾸지 못하는 것은 아니다

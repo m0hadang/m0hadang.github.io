@@ -29,9 +29,7 @@
 </ul>
 <h1>nullable</h1>
 <ul>
-<li>
-<p>? 이용하여 nullable 변수 선언 가능.</p>
-</li>
+<li>? 이용하여 nullable 변수 선언 가능.</li>
 </ul>
 <h1>프리미티브 타입</h1>
 <pre><code class="language-kotlin">fun main() {
@@ -51,13 +49,30 @@
 </ul>
 <h1>코틀린의 문자 유니코드</h1>
 <ul>
-<li>
-<p>UTF-16BE.</p>
-</li>
-<li>
-<p>문자 하나 표현시 2byte 사용.</p>
-</li>
+<li>UTF-16BE.</li>
+<li>문자 하나 표현시 2byte 사용.</li>
 </ul>
+<h1>파라미터</h1>
+<p>코틀린도 다른 언어들 처럼 기본 인자, named 인자, 가변 인자 지원</p>
+<pre><code class="language-kotlin">pay(amount = 200)
+</code></pre>
+<pre><code class="language-kotlin">fun printlnAll(vararg numbers: Int) {
+    for (n in numbers) {
+        println(n)
+    }
+}
+
+fun main() {
+    printlnAll(1, 2, 3, 4, 5)
+}
+</code></pre>
+<h1>함수 기본 반환 타입(Unit)</h1>
+<p>함수 반환 타입이 지정되지 않을 경우 Unit 를 반환한다.</p>
+<pre><code class="language-kotlin">fun a(str: String) { 
+  println(&quot;function $str&quot;)  
+  //return 0    &lt;-- 없는 것 같지만 기본적으로 0 반환
+}
+</code></pre>
 <h1>단일 표현식</h1>
 <p>단일 표현식 사용하면 리턴 생략 가능.</p>
 <pre><code class="language-kotlin">fun add(a: Int, b: Int) = a + b
@@ -239,6 +254,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 <li>private : 클래스 내부에서만 접근 가능.</li>
 <li>protected : 클래스 자신과 상속받은 클래스에서 접근 가능.</li>
 </ul>
+<h1>변수 사용시 주의</h1>
+<p>val 는 할당된 객체를 바꿀 수 없을 뿐이지 객체 내부 속성을 바꾸지 못하는 것은 아니다</p>
 
 </BODY>
 
