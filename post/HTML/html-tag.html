@@ -265,6 +265,43 @@
 30초 간격으로 리프레시.
 &lt;meta http-equiv=&quot;refresh&quot; content=&quot;30&quot;&gt;
 </code></pre>
+<h1>스타일을 위한 태그 div, span</h1>
+<p>div, span 태그는 다른 태그들과 달리 정보로서 의미를 가지지 않는다. 단지 스타일을 적용하기 위한 용도로 사용된다.</p>
+<p>div</p>
+<ul>
+<li>무색무취와 같은 태그, 어떤 의미도 없음.</li>
+<li>block level tag.</li>
+</ul>
+<pre><code class="language-html">&lt;body&gt;
+  &lt;div&gt;NAVIGATION&lt;/div&gt;
+  &lt;div&gt;ARTICLE&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>span</p>
+<ul>
+<li>
+<p>div 와 비슷하며 기본적으로 inline tag.</p>
+</li>
+</ul>
+<p>ex) div, span 태그를 이용하여 여러 태그를 그룹핑하여 스타일 적용</p>
+<pre><code class="language-html">&lt;style&gt;
+    div{
+        border:5px solid gray;
+    }
+&lt;/style&gt;
+&lt;body&gt;
+    &lt;div&gt;                  &lt;-- div라는 의미없는 태그로 2개의 태그를 묶음.
+        &lt;div&gt;NAVIGATION&lt;/div&gt;  
+        &lt;div&gt;ARTICLE&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<h1>link</h1>
+<p>파일에서 코드를 다운로드 받아 붙여넣음.</p>
+<pre><code class="language-html">style.css 파일에 있는 코드를 다운로드 받고 붙여 넣기
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+</code></pre>
 <h1>TIP</h1>
 <p><strong>태그 끼리는 부모 자식 관계를 가지며 필요에 따라서는 자식, 부모 태그 관계과 역전될 수 있다.</strong></p>
 <pre><code class="language-html">&lt;parent&gt;

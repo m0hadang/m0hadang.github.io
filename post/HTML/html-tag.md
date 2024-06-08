@@ -315,6 +315,51 @@ ex) 웹페이지를 검색 키워드, 웹페이지 제목, 웹 페이지 저자,
 <meta http-equiv="refresh" content="30">
 ```
 
+# 스타일을 위한 태그 div, span
+
+div, span 태그는 다른 태그들과 달리 정보로서 의미를 가지지 않는다. 단지 스타일을 적용하기 위한 용도로 사용된다.
+
+div
+- 무색무취와 같은 태그, 어떤 의미도 없음.
+- block level tag.
+
+```html
+<body>
+  <div>NAVIGATION</div>
+  <div>ARTICLE</div>
+</body>
+```
+
+span
+- div 와 비슷하며 기본적으로 inline tag.
+
+
+ex) div, span 태그를 이용하여 여러 태그를 그룹핑하여 스타일 적용
+
+```html
+<style>
+    div{
+        border:5px solid gray;
+    }
+</style>
+<body>
+    <div>                  <-- div라는 의미없는 태그로 2개의 태그를 묶음.
+        <div>NAVIGATION</div>  
+        <div>ARTICLE</div>
+    </div>
+</body>
+```
+
+# link
+
+파일에서 코드를 다운로드 받아 붙여넣음.
+
+```html
+style.css 파일에 있는 코드를 다운로드 받고 붙여 넣기
+
+<link rel="stylesheet" href="style.css">
+```
+
 # TIP
 
 **태그 끼리는 부모 자식 관계를 가지며 필요에 따라서는 자식, 부모 태그 관계과 역전될 수 있다.**

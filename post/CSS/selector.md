@@ -131,7 +131,7 @@ ul li{
 - `#lecture` 바로 밑에 있는 li 에만 적용 한다.
 - 주의! 모든 속성이 위와 같이 적용 되는것은 아니다. color 라는 속성은 하위 요소들 모두에 영향을 주기에 의미가 없다.
 
-형제 관계
+형제 관계(`,` 를 이용하여 복수 선택)
 ```html
 ul,ol{
     background-color: powderblue;
