@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>command</title>
+</HEAD>
+
+<BODY>
+<h1 id="post-title">command</h1>
+
+<h1>test environment</h1>
+<ul>
+<li><a href="../docker-compose/kafka.md">docker compose</a></li>
+</ul>
+<h1>create topic</h1>
+<pre><code class="language-powershell">kafka-topics --bootstrap-server localhost:9092 --topic my-topic --partitions 3 --replication-factor 1 --create
+</code></pre>
+<h1>delete topic</h1>
+<p>Kafka v2.2+:</p>
+<pre><code class="language-powershell">kafka-topics --bootstrap-server localhost:9092 --delete --topic my-topic
+</code></pre>
+<p>Kafka v2.1 or less:</p>
+<pre><code class="language-powershell">kafka-topics --zookeeper localhost:2181 --delete --topic my-topic
+</code></pre>
+<h1>consume</h1>
+<pre><code class="language-powershell">kafka-console-consumer --bootstrap-server localhost:9092 --topic my-topic
+</code></pre>
+<pre><code class="language-powershell">--consumer-property group.id=group1 
+--from-beginning
+--partition 0
+</code></pre>
+<p>can't use <code>--consumer-property group.id=group1 </code> and <code>--partition 0</code> at the same time</p>
+<h1>produce</h1>
+<pre><code class="language-powershell">kafka-console-producer --broker-list localhost:9092 --topic my-topic
+</code></pre>
+<h1>list</h1>
+<pre><code class="language-powershell">kafka-topics --bootstrap-server localhost:9092 --topic my-topic --describe
+</code></pre>
+
+</BODY>
+
+</HTML>
