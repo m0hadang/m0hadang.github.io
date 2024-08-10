@@ -14,13 +14,14 @@ A(x) = 3x^20 + 2x + 1
 A(x) = 3x^2 + 2x + 1
 B(x) = 2x^2 + 3x + 1
 
-덧셈
-- A(x) + B(x)
+덧셈 : A(x) + B(x)
+- ![polynomial_sum.png](polynomial_sum.png)
 - (3 + 2)x^2 + (2 + 3)x + (1 + 1)
 - 5x^2 + 5x + 2
 
-곱셈 
-- A(x) * B(x)
+
+곱셈 : A(x) * B(x)
+- ![polynomial_mux.png](polynomial_mux.png)
 - (3x^2 + 2x + 1)(2x^2 + 3x + 1)
 - (3x^2 + 2x + 1)(2x^2) + (3x^2 + 2x + 1)(3x) + (3x^2 + 2x + 1)(1)
 - 6x^4 + 13x^3 + 11x^2 + 5x + 1
