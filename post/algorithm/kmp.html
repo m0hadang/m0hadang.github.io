@@ -35,9 +35,38 @@ aaaaabb
 <p>찾을 문자열의 패턴 정보를 이용하여 검색 효율성 높임.</p>
 <p>search : abcabcacab</p>
 <p>search 문자열에 대한 pattern table</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 | 3 | 4 | 0 | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 <p>pattern count</p>
 <ul>
 <li>문자열 시작 부분과 일치하는 패턴의 길이.</li>
@@ -50,9 +79,38 @@ target  : abcabca|bcacab
 search  : abcabca|cab 
 </code></pre>
 <p>pattern 에서 | 시점까지 일치 하였다. 여기서 패턴 정보를 활용하여 불필요한 검색을 줄인다.</p>
-<p>| character     | a | b | c | a | b | c | a   | (c) | a | b |
-|---------------|---|---|---|---|---|---|-----|-----|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 | 3 | {4} | 0   | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>(c)</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>{4}</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 <p>일치하지 않은 지점(c)의 바로 뒤 match count from begin 값{4}을 참조하여 검색 위치를 조정한다.</p>
 <p>pattern 의 4위치(b)부터 다시 검색을 시작하면 된다.</p>
 <pre><code>target  : abcabca|bcacab  
@@ -79,9 +137,38 @@ search  :    abca|bcacab
 </ul>
 </li>
 </ul>
-<p>| character     | a | b | c | &amp;a | b | c | {a} | (c) | a | b |
-|---------------|---|---|---|----|---|---|-----|-----|---|---|
-| pattern count | 0 | 0 | 0 | 1  | 2 | 3 | {4} | 0   | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>&amp;a</th>
+<th>b</th>
+<th>c</th>
+<th>{a}</th>
+<th>(c)</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>{4}</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 <p>즉현재 위치 {a} 패턴 abca 가 존재한다.</p>
 <p>위 패턴 정보를 이용하여 다음과 같이 불필요한 검색을 제거한다.</p>
 <ul>
@@ -91,35 +178,208 @@ search  :    abca|bcacab
 <h3>pattern table 생성</h3>
 <p>step 1</p>
 <p>아직까지는 패턴이 시작되지 않았기에 0 으로 초기화 한다.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 |   |   |   |   |   |   |   |</p>
-<p>aaaa</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>step 2</p>
 <p>패턴이 발생 하였다. 첫 문자 a 와 1개 일치함으로 1 초기화.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 |   |   |   |   |   |   |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>step 3</p>
 <p>첫번째 문자 일치 이후 2번째 문자도 일치하였다. 2로 초기화.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 |   |   |   |   |   |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>step 4</p>
 <p>같은 원리로 패턴이 4 개 길이까지 일치하였다.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 | 3 | 4 |   |   |   |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>step 5</p>
 <p>불일치 발생하여 패턴이 깨졌다. 0 으로 다시 초기화.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 | 3 | 4 | 0 |   |   |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>step 6</p>
 <p>이후 다시 패턴이 생성되면서 패턴 테지블이 완성 됨.</p>
-<p>| character     | a | b | c | a | b | c | a | c | a | b |
-|---------------|---|---|---|---|---|---|---|---|---|---|
-| pattern count | 0 | 0 | 0 | 1 | 2 | 3 | 4 | 0 | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>character</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pattern count</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
 <h3>pattern count 계산 공식</h3>
 <p><img src="kmp.png" alt="kmp.png" /></p>
 <h3>코드</h3>

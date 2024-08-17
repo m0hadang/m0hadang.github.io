@@ -1,6 +1,6 @@
 use std::env::set_current_dir;
 
-use markdown::{CompileOptions, Options};
+use markdown::{CompileOptions, Constructs, Options, ParseOptions};
 
 fn create_html_file(
     markdown_file: &str,
@@ -18,6 +18,15 @@ fn create_html_file(
                 allow_dangerous_html: true,
                 allow_dangerous_protocol: true,
                 ..CompileOptions::default()
+            },
+            parse: ParseOptions {
+              constructs: Constructs {
+                  math_text: true,
+                  math_flow: true,
+                  gfm_table: true,
+                  ..Constructs::default()
+              },
+              ..ParseOptions::default()
             },
             ..Options::default()
         }
