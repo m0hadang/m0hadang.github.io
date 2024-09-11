@@ -20,3 +20,7 @@ h1 {
 p {
     text-align: left;
 }
+
+table, th, td {
+    border: 1px solid;
+}
