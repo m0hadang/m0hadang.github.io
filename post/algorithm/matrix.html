@@ -8,7 +8,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
   <script>hljs.highlightAll();</script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 
   <title>matrix</title>
 </HEAD>
@@ -29,19 +28,11 @@
 <li>행렬 D : A X B = m x p 차원</li>
 <li>0 &lt;= i &lt; m, 0 &lt;= j &lt; p 일때 각 원소
 <ul>
-<li>
-<p><img src="matrix_element.png" alt="matrix_element.png" /></p>
-</li>
-<li>
-<p><code class="language-math math-inline">d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}</code></p>
-</li>
+<li><img src="matrix_element.png" alt="matrix_element.png" /></li>
+<li><code class="language-math math-inline">`d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}`</code></li>
 </ul>
 </li>
 </ul>
-<pre><code class="language-math">\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-</code></pre>
-<p>When (a \ne 0), there are two solutions to (ax^2 + bx + c = 0) and they are
-[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.]</p>
 <p>This sentence uses <code>$</code> delimiters to show math inline:  <code class="language-math math-inline">\sqrt{3x-1}+(1+x)^2</code></p>
 <p>도식</p>
 <ul>
