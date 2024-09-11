@@ -11,8 +11,19 @@
 - 행렬 D : A X B = m x p 차원
 - 0 <= i < m, 0 <= j < p 일때 각 원소
   - ![matrix_element.png](matrix_element.png)
-  - d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}
+  - $$d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}$$
 
+
+```math
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+```
+
+
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+\[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+
+This sentence uses `$` delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$
+ 
 도식 
 - ![matrix_mux.png](matrix_mux.png)
 
