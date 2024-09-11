@@ -5,7 +5,6 @@ use markdown::{CompileOptions, Constructs, Options, ParseOptions};
 fn create_html_file(
     markdown_file: &str,
 ) -> Result<(), markdown::message::Message> {
-
     let html_file = &markdown_file.replace(".md", ".html");
 
     println!("{} -> {}", markdown_file, html_file);
@@ -20,16 +19,17 @@ fn create_html_file(
                 ..CompileOptions::default()
             },
             parse: ParseOptions {
-              constructs: Constructs {
-                  math_text: true,
-                  math_flow: true,
-                  gfm_table: true,
-                  ..Constructs::default()
-              },
-              ..ParseOptions::default()
+                constructs: Constructs {
+                    math_text: true,
+                    math_flow: true,
+                    gfm_table: true,
+                    ..Constructs::default()
+                },
+                math_text_single_dollar: false,
+                ..ParseOptions::default()
             },
             ..Options::default()
-        }
+        },
     )?;
 
     let title = &markdown_file
@@ -53,13 +53,12 @@ fn create_html_file(
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="{css_path}">
   <!-- code highlight -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
   <script>hljs.highlightAll();</script>
-
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <title>{title}</title>
 </HEAD>
 

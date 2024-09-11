@@ -2,14 +2,24 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="..\..\css\style.css">
   <!-- code highlight -->
+
+  <!--
+
+  <link rel="stylesheet" href="..\..\css\style.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
   <script>hljs.highlightAll();</script>
+  -->
 
   <title>matrix</title>
+
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
 </HEAD>
 
 <BODY>
@@ -29,11 +39,13 @@
 <li>0 &lt;= i &lt; m, 0 &lt;= j &lt; p 일때 각 원소
 <ul>
 <li><img src="matrix_element.png" alt="matrix_element.png" /></li>
-<li><code class="language-math math-inline">`d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}`</code></li>
+<li>\(d_{ij} = \sum_{k=0}^{n-1}a_{ik}b_{kj}\)</li>
 </ul>
 </li>
 </ul>
-<p>This sentence uses <code>$</code> delimiters to show math inline:  <code class="language-math math-inline">\sqrt{3x-1}+(1+x)^2</code></p>
+<p>This sentence uses <code>$</code> delimiters to show math inline:  $\sqrt{3x-1}+(1+x)^2$</p>
+<p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.]</p>
 <p>도식</p>
 <ul>
 <li><img src="matrix_mux.png" alt="matrix_mux.png" /></li>
