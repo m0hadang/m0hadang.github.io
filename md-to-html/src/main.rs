@@ -59,11 +59,22 @@ fn create_html_file(
         .unwrap()
         .replace(".md", "");
 
+    let css_path = {
+        let file_path_depth_count = html_file.split('\\').count();
+        let mut css_path = String::new();
+        for _ in 0..file_path_depth_count - 1 {
+            css_path.push_str(r#"..\"#);
+        }
+        css_path.push_str(r#"css\style.css"#);
+        css_path
+    };
+
     let html = format!(
         r#"<!DOCTYPE html>
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
+  <link rel="stylesheet" href="{css_path}">
   <!-- code highlight -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
