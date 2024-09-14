@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>tree</title>
+</HEAD>
+
+<BODY>
+<h1 id="post-title">tree</h1>
+
+<h1>트리의 성질</h1>
+<ol>
+<li>이진 트리는 다음 레벨이 증가할 때마다 모든 노드의 수가 2배에 1 추가한 만큼 증가 한다.</li>
+</ol>
+<pre><code class="language-text">     1
+   /  |    
+  2   3
+ /|  /|
+4 5 6 7
+</code></pre>
+<ol start="2">
+<li>
+<p>이진 트리의 레벨 i 에서 최대 노드 수는 \(2^{i-1}(i \geq 1)\) 이다.</p>
+</li>
+<li>
+<p>깊이가 k인 이진 트리의 최대 노드 수는 \(2^k - 1(k \geq 1)\) 이다.</p>
+</li>
+<li>
+<p>n 개의 노드를 갖는 완전 이진 트리의 높이는 \(log_2(n+1)\) 이다.</p>
+</li>
+<li>
+<p>이진 트리가 배열일 때 인덱스 i\((i \le i \le n)\) 성질</p>
+</li>
+</ol>
+<ul>
+<li>parent(i) = i/2</li>
+<li>left(i) = 2i</li>
+<li>right(i) = 2i + 1</li>
+<li>\(2i \le n\) 이면 왼쪽 자식이 있다. \(2i &gt; n\) 이면 i 는 왼쪽 자식 없음. 오른쪽 자식 역시 같음.</li>
+</ul>
+
+
+</BODY>
+
+</HTML>

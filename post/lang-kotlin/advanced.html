@@ -2,6 +2,7 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
   <!-- code highlight -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -24,16 +25,16 @@
 <ul>
 <li>람다 함수는 일반 함수와 달리 그 자체가 고차 함수이다.</li>
 </ul>
-<pre><code class="language-kotlin">fun a(str: String) { println(&quot;function $str&quot;) }
+<pre><code class="language-kotlin">fun a(str: String) { println(&quot;function \(str&quot;) }
 fun b(function: (String) -&gt; Unit) { function(&quot;kotlin&quot;) }
 
 fun main() {
     b(::a) // 일반 함수
 
-    val c: (String) -&gt; Unit = { str -&gt; println(&quot;lambda $str&quot;) } // 람다 함수
+    val c: (String) -&gt; Unit = { str -&gt; println(&quot;lambda \)str&quot;) } // 람다 함수
     b(c)
-    b { str -&gt; println(&quot;inner $str&quot;) } // 람다 축약
-//  b({ str -&gt; println(&quot;inner $str&quot;) })    
+    b { str -&gt; println(&quot;inner \(str&quot;) } // 람다 축약
+//  b({ str -&gt; println(&quot;inner \)str&quot;) })    
 }
 </code></pre>
 <h1>스코프 함수</h1>
@@ -42,7 +43,7 @@ fun main() {
 <p>apply</p>
 <pre><code class="language-kotlin">fun main() {
     var a = Book(&quot;Kotlin&quot;, 10000).apply {
-        name = &quot;book name is $name&quot;
+        name = &quot;book name is \(name&quot;
         discount()
     }
     println(a.name)
@@ -55,7 +56,7 @@ fun main() {
 <p>run</p>
 <pre><code class="language-html">fun main() {
     var a = Book(&quot;Kotlin&quot;, 10000).run {
-        name = &quot;book name is $name&quot;
+        name = &quot;book name is \)name&quot;
         discount()
     } 
     println(a)
@@ -77,11 +78,11 @@ fun main() {
 <pre><code class="language-kotlin">fun main() {
     val price = 20000
     var a = Book(&quot;Kotlin&quot;, 10000).apply {
-        name = &quot;book name is $name&quot;
+        name = &quot;book name is \(name&quot;
         discount()
     }
     a.let {
-        println(&quot;${it.name}, ${it.price}&quot;) // 충돌 방지
+        println(&quot;\){it.name}, \({it.price}&quot;) // 충돌 방지
     }
 }
 </code></pre>
@@ -129,7 +130,7 @@ fun main() {
     val counter = Counter(
         object : EventListener { // EventListener를 상속 하는 익명 클래스
             override fun onEvent(count: Int) { // EventListener onEvent 구현
-                println(&quot;Count: $count&quot;)
+                println(&quot;Count: \)count&quot;)
             }
         }
     )
@@ -244,7 +245,7 @@ fun main() {
 </code></pre>
 <ul>
 <li>사실 이 함수는 사용자가 직접 호출하기 위해서 구현된것이 아닌 배열에서 값을 꺼낼때 사용하기 위해 구현 되었다.</li>
-<li><code>listOf(SomeData(1, &quot;a&quot;), SomeData(2, &quot;b&quot;)).map { (a, b) -&gt; &quot;$a $b&quot; }</code></li>
+<li><code>listOf(SomeData(1, &quot;a&quot;), SomeData(2, &quot;b&quot;)).map { (a, b) -&gt; &quot;\(a \)b&quot; }</code></li>
 </ul>
 <h1>Enum Class</h1>
 <p>클래스이기에 생성자와 함수를 가질 수 있다.</p>
@@ -348,7 +349,7 @@ init
     runBlocking {
         val job = launch { // cancel 이 없다면 프로그램 1000 번 모두 수행 하고 프로그램 종료 
             repeat(1000) { i -&gt;
-                println(&quot;job: I'm sleeping $i ...&quot;)
+                println(&quot;job: I'm sleeping \(i ...&quot;)
                 delay(500L) // 취소 위치
             }
         }
@@ -366,12 +367,12 @@ init
     runBlocking {
         val result = withTimeoutOrNull(1300L) {
             repeat(1000) { i -&gt;
-                println(&quot;job: I'm sleeping $i ...&quot;)
+                println(&quot;job: I'm sleeping \)i ...&quot;)
                 delay(500L)
             }
             &quot;Done&quot; // will get cancelled before it produces this result
         }
-        println(&quot;Result is $result&quot;)
+        println(&quot;Result is \(result&quot;)
     }
 }
 </code></pre>

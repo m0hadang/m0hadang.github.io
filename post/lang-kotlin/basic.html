@@ -2,6 +2,7 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
+  <link rel="stylesheet" href="..\..\css\style.css">
   <!-- code highlight -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -68,7 +69,7 @@ fun main() {
 <h1>함수 기본 반환 타입(Unit)</h1>
 <p>함수 반환 타입이 지정되지 않을 경우 Unit 를 반환한다.</p>
 <pre><code class="language-kotlin">fun a(str: String) { 
-  println(&quot;function $str&quot;)  
+  println(&quot;function \(str&quot;)  
   //return 0    &lt;-- 없는 것 같지만 기본적으로 0 반환
 }
 </code></pre>
@@ -109,7 +110,7 @@ println(res)
 <pre><code class="language-kotlin">loop@ for (i in 1..10) {
     for (j in 1..10) {
         if (i == 1 &amp;&amp; j == 2) break@loop
-        println(&quot;i: $i, j: $j&quot;)
+        println(&quot;i: \)i, j: \(j&quot;)
     }
 }
 </code></pre>
@@ -121,7 +122,7 @@ println(res)
     init {
         this.name = name
         this.age = age
-        println(&quot;name: ${this.name}, age: ${this.age}&quot;)
+        println(&quot;name: \){this.name}, age: \({this.age}&quot;)
     }
 }
 fun main() {
@@ -132,7 +133,7 @@ fun main() {
 <p>기본 생성자를 호출하여 변수를 초기화 필요.</p>
 <pre><code class="language-kotlin">class Person(val name: String, val age: Int) {
     constructor(name: String) : this(name, 10) {
-        println(&quot;name: $name&quot;)
+        println(&quot;name: \)name&quot;)
     }
 }
 
@@ -148,15 +149,15 @@ fun main() {
 </ul>
 <pre><code class="language-kotlin">open class Person(val name: String, val age: Int) {
     open fun print() {
-        println(&quot;name: $name, age: $age&quot;)
+        println(&quot;name: \(name, age: \)age&quot;)
     }
 }
 class Student(name: String, age: Int, val id: Int) : Person(name, age) {
     fun printId() {
-        println(&quot;id: $id&quot;)
+        println(&quot;id: \(id&quot;)
     }
     override fun print() {
-        println(&quot;name: $name, age: $age, id: $id&quot;)
+        println(&quot;name: \)name, age: \(age, id: \)id&quot;)
     }
 }
 
@@ -173,7 +174,7 @@ fun main() {
 
 class Student(name: String, age: Int, private val id: Int) : Person(name, age) {
     override fun print() {
-        println(&quot;name: ${name}, age: ${age}, id: $id&quot;)
+        println(&quot;name: \({name}, age: \){age}, id: \(id&quot;)
     }
 }
 </code></pre>
