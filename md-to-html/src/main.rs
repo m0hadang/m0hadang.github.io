@@ -30,6 +30,7 @@ fn create_html_file(
 
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
     let markdown = replace_math_expr(&markdown);
+    println!("{}", markdown);
     let body = markdown::to_html_with_options(
         &markdown,
         &Options {
@@ -46,7 +47,7 @@ fn create_html_file(
                     character_escape: false,
                     ..Constructs::default()
                 },
-                math_text_single_dollar: false,
+                // math_text_single_dollar: true,
                 ..ParseOptions::default()
             },
             ..Options::default()
