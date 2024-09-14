@@ -2,6 +2,25 @@ use std::env::set_current_dir;
 
 use markdown::{CompileOptions, Constructs, Options, ParseOptions};
 
+fn replace_math_expr(body: &str) -> String {
+    // $expr$ -> \\(expr)\\)
+    let mut result = String::new();
+    let mut in_math = false;
+    for c in body.chars() {
+        if c == '$' {
+            if in_math {
+                result.push_str(r#"\)"#);
+            } else {
+                result.push_str(r#"\("#);
+            }
+            in_math = !in_math;
+        } else {
+            result.push(c);
+        }
+    }
+    result
+}
+
 fn create_html_file(
     markdown_file: &str,
 ) -> Result<(), markdown::message::Message> {
@@ -10,6 +29,7 @@ fn create_html_file(
     println!("{} -> {}", markdown_file, html_file);
 
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
+    let markdown = replace_math_expr(&markdown);
     let body = markdown::to_html_with_options(
         &markdown,
         &Options {
@@ -23,6 +43,7 @@ fn create_html_file(
                     math_text: true,
                     math_flow: true,
                     gfm_table: true,
+                    character_escape: false,
                     ..Constructs::default()
                 },
                 math_text_single_dollar: false,
