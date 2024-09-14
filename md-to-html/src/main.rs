@@ -38,16 +38,6 @@ fn create_html_file(
         .unwrap()
         .replace(".md", "");
 
-    let css_path = {
-        let file_path_depth_count = html_file.split('\\').count();
-        let mut css_path = String::new();
-        for _ in 0..file_path_depth_count - 1 {
-            css_path.push_str(r#"..\"#);
-        }
-        css_path.push_str(r#"css\style.css"#);
-        css_path
-    };
-
     let html = format!(
         r#"<!DOCTYPE html>
 <HTML>
