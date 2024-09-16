@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <meta charset="UTF-8">
-  <link rel="stylesheet" href="..\..\css\style.css">
+  <link rel="stylesheet" href="../../css/style.css">
   <!-- code highlight -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -39,48 +39,36 @@
 <li>\(2i \le n\) 이면 왼쪽 자식이 있다. \(2i &gt; n\) 이면 i 는 왼쪽 자식 없음. 오른쪽 자식 역시 같음.</li>
 </ul>
 <h1>트리 순회</h1>
-<pre><code class="language-text">          +
-        /  \ 
-       *    E
-      / \  
-     *   D
-    / \ 
-  (/)  C
-  / \
- A   B
+<pre><code class="language-text">         (+)
+         / \ 
+       (*)  E
+       / \  
+     (*)  D
+     / \ 
+   (/)  C
+   / \
+ (A)  B
 </code></pre>
 <p>중위 순회 (Inorder Traversal)</p>
 <ul>
 <li>왼쪽 자식 -&gt; 방문 -&gt; 오른쪽 자식</li>
 <li>더 이상 진행할 수 없을 때까지 왼쪽 방향으로 이동하여 내려간 다음, 그 노드를 방문 하고 오른쪽 자식 노드로 이동한 뒤 계속 진행.</li>
 <li>오른쪽으로 이동할 수 없을 때에는 방문하지 않은 상위 노드로 되돌아 간다.</li>
-<li>A / B * C * D + E</li>
+<li><code>A / B * C * D + E</code></li>
 </ul>
 <p>전위 순회(Preorder Traversal)</p>
 <ul>
 <li>방문 -&gt; 왼쪽 자식 -&gt; 오른쪽 자식</li>
 <li>노드를 먼저 방문하고 왼쪽으로 계속 이동 한다. 더 이상 진행할 수 없으면 오른쪽으로 이동.</li>
 <li>오른쪽으로 이동할 수 없을 때에는 방문하지 않은 상위 노드로 되돌아 간다.</li>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>/ A B C D E</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><code>+ * * / A B C D E</code></li>
 </ul>
 <p>후위 순회(Postorder Traversal)</p>
 <ul>
 <li>왼쪽 자식 -&gt; 오른쪽 자식 -&gt; 방문</li>
 <li>왼쪽 자식으로 이동하고 더 이상 진행할 수 없을 때까지 이동한 후 오른쪽 자식으로 이동한다.</li>
 <li>오른쪽으로 이동할 수 없을 때에는 방문하지 않은 상위 노드로 되돌아 간다.</li>
-<li>A B / C * D * E +</li>
+<li><code>A B / C * D * E +</code></li>
 </ul>
 
 </BODY>
