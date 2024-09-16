@@ -1,4 +1,3 @@
-# Hello
+🚀 *[Go Post](post/index.html)*
 
-this is my blog file
-[apple](post/apple.html)
+github : https://github.com/m0hadang/m0hadang.github.io
