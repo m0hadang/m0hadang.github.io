@@ -2,23 +2,12 @@ use std::env::set_current_dir;
 
 use markdown::{CompileOptions, Constructs, Options, ParseOptions};
 
-fn replace_math_expr(body: &str) -> String {
-    // $expr$ -> \\(expr)\\)
-    let mut result = String::new();
-    let mut in_math = false;
-    for c in body.chars() {
-        if c == '$' {
-            if in_math {
-                result.push_str(r#"\)"#);
-            } else {
-                result.push_str(r#"\("#);
-            }
-            in_math = !in_math;
-        } else {
-            result.push(c);
-        }
-    }
-    result
+fn main() {
+    set_current_dir(r"..\").unwrap();
+    create_html_file(r"index.md").unwrap();
+    get_md_files(r"post").iter().for_each(|file| {
+        create_html_file(file).unwrap();
+    });
 }
 
 fn create_html_file(
@@ -30,7 +19,6 @@ fn create_html_file(
 
     let markdown = std::fs::read_to_string(markdown_file).unwrap();
     let markdown = replace_math_expr(&markdown);
-    println!("{}", markdown);
     let body = markdown::to_html_with_options(
         &markdown,
         &Options {
@@ -98,6 +86,25 @@ fn create_html_file(
     Ok(())
 }
 
+fn replace_math_expr(body: &str) -> String {
+    // $expr$ -> \\(expr)\\)
+    let mut result = String::new();
+    let mut in_math = false;
+    for c in body.chars() {
+        if c == '$' {
+            if in_math {
+                result.push_str(r#"\)"#);
+            } else {
+                result.push_str(r#"\("#);
+            }
+            in_math = !in_math;
+        } else {
+            result.push(c);
+        }
+    }
+    result
+}
+
 fn get_md_files(dir: &str) -> Vec<String> {
     let mut file_list = Vec::new();
     for entry in std::fs::read_dir(dir).unwrap() {
@@ -110,12 +117,4 @@ fn get_md_files(dir: &str) -> Vec<String> {
         }
     }
     file_list
-}
-
-fn main() {
-    set_current_dir(r"..\").unwrap();
-    create_html_file(r"index.md").unwrap();
-    get_md_files(r"post").iter().for_each(|file| {
-        create_html_file(file).unwrap();
-    });
 }
