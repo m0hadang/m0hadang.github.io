@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>security</title>
+</HEAD>
+
+<BODY>
+<h1 id="post-title">security</h1>
+
+<p>서비스 account 확인</p>
+<pre><code class="language-shell">\( kubectl get serviceaccount
+NAME      SECRETS   AGE
+default   0         98s
+</code></pre>
+<p>account 생성</p>
+<pre><code class="language-shell">\) kubectl create sa alicek106
+serviceaccount/alicek106 created
+\( kubectl get serviceaccount
+NAME        SECRETS   AGE
+alicek106   0         1s
+default     0         2m50s
+</code></pre>
+<p>특정 Account 사용하여 명령어 실행</p>
+<pre><code class="language-shell">\) kubectl get services --as system:serviceaccount:default:alicek106
+Error from server (Forbidden): services is forbidden: User &quot;system:serviceaccount:default:alicek106&quot; cannot list
+
+- 권한 부족으로 실패
+</code></pre>
+<ul>
+<li>--as system:serviceaccount : 인증을 위해 서비스 account를 사용</li>
+<li>default:alicek106 : default 네임스페이스의 alicek106 서비스 account 사용</li>
+</ul>
+
+
+</BODY>
+
+</HTML>

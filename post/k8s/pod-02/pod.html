@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>pod</title>
+</HEAD>
+
+<BODY>
+<h1 id="post-title">pod</h1>
+
+<p>기존 실행된 같은 이름의 파드 중지</p>
+<pre><code class="language-shell">\( kubectl delete pods my-nginx-pod
+pod &quot;my-nginx-pod&quot; deleted
+</code></pre>
+<p>포드 실행</p>
+<pre><code class="language-shell">\) kubectl apply -f .\nginx-pod-with-ubuntu.yaml
+pod/my-nginx-pod created
+</code></pre>
+<p>2 개의 컨테이너 실행 중</p>
+<pre><code class="language-shell">\( kubectl get pods
+NAME           READY   STATUS    RESTARTS   AGE
+my-nginx-pod   2/2     Running   0          13s
+
+\) docker ps
+CONTAINER ID   IMAGE               COMMAND                   ...
+f6a8c88338cd   alicek106/rr-test   &quot;tail -f /dev/null&quot;       ...
+bed75afa1f62   nginx               &quot;/docker-entrypoint.…&quot;    ...    
+</code></pre>
+<ul>
+<li>nginx 1개 ubuntu 서버 1개 실행 중</li>
+</ul>
+<p>kubectl 사용하여 우분투 서버 접속</p>
+<pre><code class="language-shell">\( kubectl exec -it my-nginx-pod -c ubuntu-sidecar-container bash
+</code></pre>
+<p>우분투 서버에서 nginx 서버 접근</p>
+<pre><code class="language-shell">\) curl localhost
+</code></pre>
+<p>우분투 컨테이너의 로컬호스트에서 Nginx 서버로 접근이 가능한 것은 포드 내의 컨테이너들이 네트워크 네임스페이스 등과 같은 리눅스 네임스페이스를 공유해 사용하기 때문이다.</p>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+  <link rel="stylesheet" href="../../../css/style.css">
+  <!-- code highlight -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/school-book.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <title>replicaset</title>
+</HEAD>
+
+<BODY>
+<h1 id="post-title">replicaset</h1>
+
+<p>포드 실행</p>
+<pre><code class="language-shell">\( kubectl apply -f .\replicaset-nginx.yaml
+replicaset.apps/replicaset-nginx created    &lt;-- 생성됨
+
+\) kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+replicaset-nginx-d6zxp   1/1     Running   0          75s
+replicaset-nginx-h5w5j   1/1     Running   0          75s 
+replicaset-nginx-nfdtv   1/1     Running   0          75s
+</code></pre>
+<ul>
+<li>3 개의 포드가 생성됨</li>
+</ul>
+<p>4 개로 생성할 수 있도록 yaml 수정</p>
+<pre><code class="language-yaml">replicas: 4
+</code></pre>
+<pre><code class="language-shell">\( kubectl apply -f .\replicaset-nginx.yaml
+replicaset.apps/replicaset-nginx configured    &lt;-- 수정됨
+
+\) kubectl get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+replicaset-nginx-d6zxp   1/1     Running   0          3m43s
+replicaset-nginx-h5w5j   1/1     Running   0          3m43s
+replicaset-nginx-nfdtv   1/1     Running   0          3m43s
+replicaset-nginx-zng6r   1/1     Running   0          27s
+</code></pre>
+<p>레플리카셋 종료</p>
+<pre><code class="language-shell">\( kubectl delete rs replicaset-nginx
+replicaset.apps &quot;replicaset-nginx&quot; deleted
+\) kubectl get pods
+No resources found in default namespace.
+</code></pre>
+<ul>
+<li>레플리카셋을 종료하여 포드도 같이 종료 되었지만 서로 종속적인 리소스는 아니다.</li>
+</ul>
+
+</BODY>
+
+</HTML>

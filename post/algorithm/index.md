@@ -6,4 +6,5 @@
 - [polynomial](polynomial.html)
 - [postfix](postfix.html)
 - [recursive-mechanism](recursive-mechanism.html)
+- [thread-bin-tree](thread-bin-tree.html)
 - [tree](tree.html)
