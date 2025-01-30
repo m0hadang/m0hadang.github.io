@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment # Deployment
+metadata:
+  name: my-nginx-deployment
+spec:
+  replicas: 3 # Deployment 는 자동으로 레플리카셋도 생성해 준다
+  selector:
+    matchLabels:
+      app: my-nginx
+  template:
+    metadata:
+      name: my-nginx-pod
+      labels:
+        app: my-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.10
+        ports:
+        - containerPort: 80
+

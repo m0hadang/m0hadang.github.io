@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hostname-svc-clusterip
+spec:
+  ports:
+    - name: web-port
+      port: 8080 # 생성된 서비스는 쿠버네트스 내부에서만 사용할 수 있는 고유한 IP 할당 받음. 서비스의 IP에 접근할 때 사용할 포트
+      targetPort: 80 # 접근 대상이 된 포드들이 내부적을 사용하고 있는 포트.
+      # 8080 접근을 80 으로 라우팅
+
+  selector: # 이 서비스에서 어떠한 라벨을 가지는 포드에 접근할 수 있게 만들 것인지 결정
+    app: webserver # app: webserver 라벨을 가지는 포드들의 집합에 접근할 수 있는 서비스를 생성
+
+  type: ClusterIP # 서비스의 타입
+  # 쿠버네티스 내부에서만 포드들에 접근할 때 사용. 외부로 포드를 노출하지 않기 때문에 쿠버네티스 클러스터 내부에서만 사용되는 포드에 적합
+
+  # type: LoadBalancer
+  # 클라우드 플랫폼에서 제공하는 로드 밸런서를 동적으로 프로비저닝해 포드에 연결
+  # NodePort 타입과 마찬가지로 외부에서 포드에 접근할 수 있는 서비스 타입.
+  # 그렇지만 일반적으로 AWS, GCP 등과 같은 클라우드 플랫폼 환경에서만 사용할 수 있음
+
