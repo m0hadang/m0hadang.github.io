@@ -1,3 +1,3 @@
-🚀 *[Go Post](post/index.html)*
+# mohadang
 
-github : https://github.com/m0hadang/m0hadang.github.io
+🚀 *[Go Post](post/post.html)*

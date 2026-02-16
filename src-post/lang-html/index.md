@@ -1,3 +1,0 @@
-- [a-tag-poem](a-tag-poem.html)
-- [about-html](about-html.html)
-- [tag](tag.html)
