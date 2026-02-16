@@ -6,6 +6,8 @@ Personal blog/documentation site hosted on GitHub Pages.
 - `md-to-html.exe` : html file generator using markdown file
   - https://github.com/m0hadang/md-to-html
 - `src-post/` : Markdown source files
+  - you should write post(*.md) in this directory
+  - you can push your source post but it's not necessary
 - `post/` : Generated HTML files
 - `index.md` : Home page source
 - `css/` : Stylesheets
